@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         return ChangeNotifierProvider(
           create: (_) => LocalAuthProvider(),
           child: MaterialApp(
-            title: 'Flutter Demo',
+            title: 'Payments',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: state,
