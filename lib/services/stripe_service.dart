@@ -21,6 +21,10 @@ class StripeService {
         ),
       );
       await _prossessPayment();
+    } on StripeError catch (e) {
+      if (e.code == FailureCode.Canceled) {
+        log("Payment Cencelled");
+      }
     } catch (e) {
       log("Error in makePayment = ${e.toString()}");
     }
@@ -61,6 +65,10 @@ class StripeService {
     try {
       await Stripe.instance.presentPaymentSheet();
       await Stripe.instance.confirmPaymentSheetPayment();
+    } on StripeError catch (e) {
+      if (e.code == "FailureCode.Canceled") {
+        log("Payment Cencelled");
+      }
     } catch (e) {
       log("Error on prossess payment = ${e.toString()}");
     }
