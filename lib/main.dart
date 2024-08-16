@@ -5,7 +5,8 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:payments/provider/local_auth_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:payments/screens/splash.dart';
+import 'package:payments/screens/notifications/notification.dart';
+import 'package:payments/screens/notifications/notification_service.dart';
 import 'package:payments/theme/app_theme.dart';
 import 'package:payments/theme/bloc/theme_cubit.dart';
 import 'package:payments/utils/consts.dart';
@@ -18,6 +19,7 @@ void main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
+  await NotificationService().initNotification();
   await _setup();
   runApp(const MyApp());
 }
@@ -28,6 +30,7 @@ Future<void> _setup() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static GlobalKey<NavigatorState> navigatgorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -45,7 +48,7 @@ class MyApp extends StatelessWidget {
             darkTheme: AppTheme.darkTheme,
             themeMode: state,
             debugShowCheckedModeBanner: false,
-            home: const SplashScreen(),
+            home: const NotificationsScreen(),
           ),
         );
       }),
