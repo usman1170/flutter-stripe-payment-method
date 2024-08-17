@@ -14,8 +14,8 @@ class NotificationButton extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: Container(
-        height: 60,
-        width: MediaQuery.of(context).size.width - 20,
+        height: 55,
+        width: MediaQuery.of(context).size.width - 30,
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(30),
@@ -25,7 +25,7 @@ class NotificationButton extends StatelessWidget {
             title,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
           ),
